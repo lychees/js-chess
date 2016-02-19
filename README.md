@@ -1,4 +1,6 @@
-## A simple online chess game.
+## js-chess
+
+A simple online chess game demo, base on nodejs.
 
 Ref:
 
