@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html manifest="offline.appcache">
+<head>
+	<meta name = "viewport" content = "user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">	
+	<title>Js-Chess</title>
+	<link rel='stylesheet' href='style/style.css' type='text/css'/>
+  <link rel='stylesheet' href='style/chessboard-0.3.0.css' type='text/css'/>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/vue.js" type='text/javascript'></script>  
+  <script src="js/chessboard-0.3.0.js" type='text/javascript'></script> 
+  <script src="js/chess.js" type='text/javascript'></script> 
+</head>
+<body>
+
+<div id="board" style="width: 400px"></div>
+<input type="button" id="startBtn" value="Start" />
+<input type="button" id="clearBtn" value="Clear" />
+
+<script src="js/main.js" type='text/javascript'></script> 
+</body>
+</html>
