@@ -1,4 +1,6 @@
-var audio_move;
+var SE_select;
+var SE_move;
+var SE_eat;
 
 var board, game;
 var socket = io();
@@ -45,6 +47,7 @@ var onDragStart = function(source, piece) {
       (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
     return false;
   }
+  SE_select.play();
 };
 
 var onDrop = function(source, target) {
@@ -61,7 +64,7 @@ var onDrop = function(source, target) {
   // illegal move
   if (move === null) return 'snapback';
   socket.emit('move', source, target); 
-  audio_move.play();
+  SE_move.play();
 };
 
 
@@ -105,7 +108,7 @@ socket.on('move', function(source, target){
         promotion: 'q' // NOTE: always promote to a queen for example simplicity
     });
     board.move(source+"-"+target);
-    audio_move.play();
+    SE_move.play();
 });
 
 socket.on('new game', function(){
@@ -143,17 +146,12 @@ $(document).ready(function(){
     //$('#clearBtn').on('click', board.clear);  
     socket.emit('login');    
 
-
-
-    audio_move = document.createElement('audio');
-    audio_move.setAttribute('src', './Audio/SE/move.ogg');
-
-    ('.selector').easyAudioEffects({
-        ogg : "./path/to/sound.ogg",
-        mp3 : "./path/to/sound.mp3",
-        eventType : "hover" // or "click"
-       });
-
+    SE_select = document.createElement('audio');
+    SE_select.setAttribute('src', './Audio/SE/select.ogg');
+    SE_move = document.createElement('audio');
+    SE_move.setAttribute('src', './Audio/SE/move.ogg');    
+    SE_eat = document.createElement('audio');
+    SE_eat.setAttribute('src', './Audio/SE/eat.ogg');
 });
 
 
