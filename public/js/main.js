@@ -60,7 +60,8 @@ var onDrop = function(source, target) {
     to: target,
     promotion: 'q' // NOTE: always promote to a queen for example simplicity
   });
-  
+
+  // illegal move
   if (move === null) return 'snapback';
   socket.emit('move', source, target); 
   SE_move.play();
