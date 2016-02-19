@@ -1,3 +1,5 @@
+var audio_move;
+
 var board, game;
 var socket = io();
 var user_id, room_id;
@@ -59,6 +61,7 @@ var onDrop = function(source, target) {
   // illegal move
   if (move === null) return 'snapback';
   socket.emit('move', source, target); 
+  audio_move.play();
 };
 
 
@@ -101,8 +104,8 @@ socket.on('move', function(source, target){
         to: target,
         promotion: 'q' // NOTE: always promote to a queen for example simplicity
     });
-
     board.move(source+"-"+target);
+    audio_move.play();
 });
 
 socket.on('new game', function(){
@@ -139,6 +142,18 @@ $(document).ready(function(){
 
     //$('#clearBtn').on('click', board.clear);  
     socket.emit('login');    
+
+
+
+    audio_move = document.createElement('audio');
+    audio_move.setAttribute('src', './Audio/SE/move.ogg');
+
+    ('.selector').easyAudioEffects({
+        ogg : "./path/to/sound.ogg",
+        mp3 : "./path/to/sound.mp3",
+        eventType : "hover" // or "click"
+       });
+
 });
 
 
